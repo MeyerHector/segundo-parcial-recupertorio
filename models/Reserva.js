@@ -11,7 +11,6 @@ const Reserva = sequelize.define('Reserva', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        defaultValue: new Date().getTime()
     },
     nombre: {
         type: DataTypes.STRING(50),
