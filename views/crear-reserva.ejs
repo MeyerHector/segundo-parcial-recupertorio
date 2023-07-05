@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+<main>
+     <form id="formCrearReserva">
+        <h1>Nueva Reserva</h1>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre">
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido">
+        </div>
+        <div class="mb-3">
+            <label for="DNI" class="form-label">DNI</label>
+            <input type="text" class="form-control" id="dni">
+        </div>
+        <div class="mb-3">
+            <label for="Ida" class="form-label">Ida</label>
+            <input type="date" class="form-control" id="ida">
+        </div>
+        <div class="mb-3">
+            <label for="Vuelta" class="form-label">Vuelta</label>
+            <input type="date" class="form-control" id="vuelta">
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+    </form>
+</main>
+   
+<script src="js/crear-reserva.js"></script>
+
+    <%- include('partials/footer') %>
