@@ -36,7 +36,7 @@ formReserva.addEventListener('submit', async (e) => {
 
 
 
-    const response = await fetch(`/api/${reservaId}`, {
+    const response = await fetch(`/api/reservas/${reservaId}`, {
         method: 'PUT',
         body: JSON.stringify(reservaActualizada),
         headers: {
