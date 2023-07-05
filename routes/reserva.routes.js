@@ -2,9 +2,8 @@
 
 const router = require('express').Router();
 const {
-    renderObtenerReservas,
     renderCrearReserva,
-    renderActualizarReservas,
+    renderActualizarReserva,
     obtenerReservas,
     obtenerReserva,
     crearReserva,
@@ -17,37 +16,37 @@ const {
 //         Rutas para renderizar vistas
 // ==========================================
 
-// Obtener todas las reservas
-router.get('/', renderObtenerReservas);
+// Formulario para actualizar una reserva
+router.get('/actualizar-reserva/:id', renderActualizarReserva)
+
 
 
 // Formulario para crear una reserva
 
 router.get('/nueva-reserva', renderCrearReserva);
 
-// Formulario para actualizar una reserva
-router.get('/actualizar-reserva/:id', renderActualizarReservas)
-
+// Obtener todas las reservas
+router.get('/', obtenerReservas);
 
 // ==========================================
 //         Rutas para CRUD de reservas
 // ==========================================
 
 // Obtener todas las reservas
-router.get('/api/', obtenerReservas);
+router.get('/api/reservas', obtenerReservas);
 
 // Obtener una reserva
 
-router.get('/api/:id', obtenerReserva);
+router.get('/api/reservas/:id', obtenerReserva);
 
 // Crear una reserva
-router.post('/api', crearReserva);
+router.post('/api/reservas', crearReserva);
 
 // Actualizar una reserva
-router.put('/api/:id', actualizarReserva);
+router.put('/api/reservas/:id', actualizarReserva);
 
 
 // Eliminar una reserva de forma lógica
-router.delete('/api/:id', eliminarReserva);
+router.delete('/api/reservas/:id', eliminarReserva);
 
 module.exports = router;

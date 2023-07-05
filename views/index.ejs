@@ -1,5 +1,6 @@
 <%- include('partials/header') %>
 
+
     <div class="container">
 
         <div class="row mt-5">
@@ -12,14 +13,46 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Columna 1</th>
-                            <th>Columna 2</th>
-                            <th>Columna 3</th>
-                            <th>Columna n</th>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Ida</th>
+                            <th>Vuelta</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="">
-          
+                    <tbody id="listaReservas">
+                        <% reservas.forEach(function(reserva){ %>
+                            <tr>
+                                <td>
+                                    <%= reserva.codigo %>
+                                </td>
+                                <td>
+                                    <%= reserva.nombre %>
+                                </td>
+                                <td>
+                                    <%= reserva.apellido %>
+                                </td>
+                                <td>
+                                    <%= reserva.dni %>
+                                </td>
+                                <td>
+                                    <%= reserva.fechaIda %>
+                                </td>
+                                <td>
+                                    <%= reserva.fechaVuelta %>
+                                </td>
+                                <td>
+                                    $ <%= reserva.precio %>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger">Eliminar</a>
+                                    <a href="/actualizar-reserva/<%= reserva.id %>" class="btn btn-warning">Editar</a>
+                                </td>
+                            </tr>
+                            <% }) %>
                     </tbody>
                 </table>
             </div>

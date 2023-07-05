@@ -1,14 +1,11 @@
 const ctrl = {};
 const Reserva = require('../models/Reserva.js');
 
-ctrl.renderObtenerReservas = (req, res) => {
-    res.render('index')
-}
 ctrl.renderCrearReserva = (req, res) => {
     res.render('crear-reserva')
 }
 ctrl.renderActualizarReserva = (req, res) => {
-    res.render('crear-reserva')
+    res.render('actualizar-reserva')
 }
 
 
@@ -24,7 +21,9 @@ ctrl.obtenerReservas = async (req, res) => {
                 estado: true
             }
         })
-        return res.json(reservas);
+        return res.render('index', {
+            reservas
+        });
     } catch (error) {
         return res.status(500).json({
             message: 'Error al obtener las reservas'
@@ -50,19 +49,23 @@ ctrl.obtenerReserva = async (req, res) => {
 // Crear una reserva
 ctrl.crearReserva = async (req, res) => {
     const {
+        codigo,
         nombre,
         apellido,
         dni,
         fechaIda,
-        fechaVuelta
+        fechaVuelta,
+        precio
     } = req.body;
     try {
         const reserva = await Reserva.create({
+            codigo: new Date().getTime(),
             nombre,
             apellido,
             dni,
             fechaIda,
-            fechaVuelta
+            fechaVuelta,
+            precio
         });
         return res.json(reserva);
     } catch (error) {
@@ -74,31 +77,18 @@ ctrl.crearReserva = async (req, res) => {
 }
 // Actualizar una reserva
 ctrl.actualizarReserva = async (req, res) => {
-    const {
-        nombre,
-        apellido,
-        dni,
-        fechaIda,
-        fechaVuelta
-    } = req.body;
     try {
-        const reserva = await Reserva.update({
-            nombre,
-            apellido,
-            dni,
-            fechaIda,
-            fechaVuelta
-        }, {
-            where: {
-                id: Number(req.params.id)
-            }
+        const { id } = req.params;
+        const reserva = await Reserva.findByPk(id);
+        await reserva.update(req.body)
+        return res.json({
+            message: 'Reserva actualizada exitosamente'
         });
-        return res.json(reserva);
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({
-            message: 'Error al actualizar la reserva'
-        });
+        console.log('Error al actualizar la reserva', error);
+        return res.status(error.status || 500).json({
+            message: error.message
+        })
     }
 }
 // Eliminar una reserva de forma lógica
