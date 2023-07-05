@@ -5,7 +5,8 @@ ctrl.renderCrearReserva = (req, res) => {
     res.render('crear-reserva')
 }
 ctrl.renderActualizarReserva = (req, res) => {
-    res.render('actualizar-reserva')
+    const reservaId = req.params.id;
+    res.render("actualizar-reserva", { id: reservaId });
 }
 
 
@@ -28,7 +29,7 @@ ctrl.obtenerReservas = async (req, res) => {
         return res.status(500).json({
             message: 'Error al obtener las reservas'
         });
-    }    
+    }
 }
 // Obtener una reserva
 

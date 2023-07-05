@@ -11,7 +11,7 @@ const precio = document.querySelector('#precio')
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const response = await fetch(`/api/${reservaId}`);
+    const response = await fetch(`/api/reservas/${reservaId}`);
     const data = await response.json();
     console.log(data)
     nombre.value = data.nombre;
